@@ -65,4 +65,27 @@ public class AFND {
     public void setTrans(Map<String, Map<Character, Set<String>>> trans) {
         this.trans = trans;
     }
+
+    //metodos 
+    public void aggTransicion(String estadoOrigen, char simbolo, String estadoDestino){
+        trans.putIfAbsent(estadoOrigen, new HashMap<>());
+        trans.get(estadoOrigen).putIfAbsent(simbolo, new HashSet<>());
+        trans.get(estadoOrigen).get(simbolo).add(estadoDestino); 
+    }
+
+    public void mostrarAFND() {
+        System.out.println("=== AFND ===");
+        System.out.println("Estados: " + estados);
+        System.out.println("Alfabeto: " + alfabeto);
+        System.out.println("Estado inicial: " + estInicial);
+        System.out.println("Estados finales: " + estFinales);
+        System.out.println("Transiciones:");
+        
+        for (String estado : trans.keySet()) {
+            Map<Character, Set<String>> trans = trans.get(estado);
+            for (char simbolo : trans.keySet()) {
+                System.out.println("  " + estado + " --" + simbolo + "--> " + trans.get(simbolo));
+            }
+        }
+    }
 }
