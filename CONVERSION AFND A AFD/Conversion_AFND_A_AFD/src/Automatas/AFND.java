@@ -4,6 +4,8 @@
  */
 package Automatas;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -82,10 +84,11 @@ public class AFND {
         System.out.println("Transiciones:");
         
         for (String estado : trans.keySet()) {
-            Map<Character, Set<String>> trans = trans.get(estado);
-            for (char simbolo : trans.keySet()) {
-                System.out.println("  " + estado + " --" + simbolo + "--> " + trans.get(simbolo));
+            Map<Character, Set<String>> transiciones = trans.get(estado);
+            for (char simbolo : transiciones.keySet()) {
+                System.out.println("  " + estado + " --" + simbolo + "--> " + transiciones.get(simbolo));
             }
         }
     }
 }
+
